@@ -9,4 +9,3 @@ def test_navigation(page):
     page.wait_for_timeout(2000)
     page.go_forward()
     page.wait_for_timeout(2000)
-
