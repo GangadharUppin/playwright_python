@@ -1,0 +1,233 @@
+To open code gen
+playwright codegen https://www.flipkart.com/
+
+Finding Elements
+=================
+1. get_by_role()
+<button>Submit</button>
+page.get_by_role("button", name="Submit").click()
+2. get_by_text()
+<div>Welcome Back</div>
+page.get_by_text("Welcome Back").click()
+3. get_by_label()
+<label for="username">Username</label>
+<input id="username" type="text">
+page.get_by_label("Username").fill("my_user")
+4. get_by_placeholder()
+<input type="text" placeholder="Enter your email">
+page.get_by_placeholder("Enter your email").fill("test@example.com")
+5. get_by_title()
+<a href="/cart" title="Cart">🛒</a>
+page.get_by_title("Cart").click()
+6.get_by_alt_text()
+<img src="logo.png" alt="Company Logo">
+page.get_by_alt_text("Company Logo").click()
+7.get_by_test_id()
+<button data-testid="login-btn">Login</button>
+page.get_by_test_id("login-btn").click()
+
+Note:
+if we want to run with chrome
+browser = playwright.chromium.launch(channel='chrome', headless=False)
+
+Important notes on elements
+===========================
+We have also page.locator(“”button).filter(has_text=‘Next ).click()
+One more important we can do is
+page.locator(“button:has-text(‘Next’)”)nth(1).click() -> It means clicks on 1 element
+Playwright to maximize window
+page.set_viewport_size({'width':1920, 'height':1080})
+
+Browser Navigation Methods:
+===========================
+page.go_back()
+page.go_forward()
+page.reload()
+
+To get text on the element:
+===========================
+page.locator().inner_text()
+For multiple elements all_inner_texts() will work
+
+DropDown:
+=========
+Dropdown will work only select tag
+Select is task and label , value index is based on dropdown
+page.select_option(“select”, label="Hello”)
+page.select_option(“select”, value="Hi”)
+page.select_option(“select”, index=0)
+
+# Select by value
+page.locator("#country").select_option("IN")
+# Select by label (visible text)
+page.locator("#country").select_option(label="United States")
+# Select by index (0-based)
+page.locator("#country").select_option(index=2)
+browser.close()
+
+How to check how many values are there in dropdown:
+Elements = page.locator(‘option’).all() —> return the list included all the elements
+For ele in elements:
+	text = ele.inner_text()
+	value = ele.get_attribute(“lan”)
+
+Handling links:
+==============
+Links = page.locator(“a”).all()  # it prints all the links inside page.
+For link in links:
+	text = link.inner_text()
+
+	url = link.get_attribute(’href’)
+Suppose if you have some 100 links in the page I want only few link from the top of the page
+We need to find parent element which has few links
+parent_element = page.locator("xpath”)
+links = parent_element.locator(‘a’) # it prints the links which is inside parent_element block in the page.
+
+Handling checkbox:
+=================
+Using element.click() we can perform this
+
+Assertions in playwright:
+=========================
+Here we need to import expect from playwright_sync_api import expect
+
+expect(page).to_have_url(“URL”)
+expect(page).not_to_have_url(”URL”)
+expect(page).to_have_title(“Title”)
+expect(locator).to_have_text(“Text”)
+expect(locator_checkbox).to_be_visible()
+expect(locator_checkbox).not_to_be_visible()
+expect(locator_checkbox).to_be_checked()
+expect(page.locator("[value='friday']")).not_to_be_checked()
+
+
+Handling web tables:
+====================
+We need to count row and column first
+def web_tables():
+	row_count = page.locator(element).count()
+	column_count = page.locator(element).count()
+	all_text = page.(locator).all_inner_texts()
+	for text in all_text:
+		print(text)
+
+How to handle Mouse overs:
+=========================
+page.locator(element).hover()
+
+Handling sliders:
+=================
+Find the element locator for slider
+slider = page.locator(element)
+bounding_box = slider.bounding_box()
+start_x = bounding_box[“x”] + bounding_box[“width”] / 2
+start_y = bounding_box[“y”] + bounding_box[“height”] / 2
+page.mouse.move(start_x, start_y)
+page.mouse.down()
+Page.move(start_x + 900, start_y)
+Page.mouse.up()
+
+
+
+Handling resizable element:
+===========================
+If we have any element we need to make drag and resize
+Find the element locator for slider
+slider = page.locator(element)
+bounding_box = slider.bounding_box()
+start_x = bounding_box[“x”] + bounding_box[“width”] / 2
+start_y = bounding_box[“y”] + bounding_box[“height”] / 2
+page.mouse.move(start_x, start_y)
+page.mouse.down()
+Page.move(start_x + 900, start_y+ 800)
+Page.mouse.up()
+
+Handling Drag and Drop:
+=======================
+source_ele = page.locator(element)
+dest_ele = page.locator(element)
+bounding_box_source = source_ele.bounding_box()
+bounding_box_dest = dest_ele.bounding_box()
+page.mouse.move(
+	bounding_box_source[“x”] + bounding_box_source[“width”] /2,
+	bounding_box_source[“y”] + bounding_box_source[“height”] /2
+)
+page.mouse.down()
+page.mouse.move(
+	bounding_box_dest[“x”] + bounding_box_dest[“width”] /2,
+	bounding_box_dest[“y”] + bounding_box_dest[“height”] /2
+)
+page.mouse.up()
+
+Right click on elements:
+=======================
+page.locator(element).click(button=“right”)
+button.dblclick()
+
+Handling Alerts:
+================
+The spl method we need to write:
+def dialog_hanlder(dialog):
+	print(dialog.message)
+	dialog.accept()
+page.on(“dialog”, dialog_hanlder)
+page.goto(url)
+page.locator(element).click()
+
+To clear text from the textbox:
+===============================
+page.locator(element).clear()
+
+Handling Frame:
+=================
+page.frame_locator(element)
+
+Handling tabs and pop-up:
+==========================
+With page.expect_popup() as popup_info:
+	page.locator(element).click()
+If we need to perform some action on popup
+popup = popup_info.value
+popup.locator(element).click()
+Popup.close() # closes the current pop up
+
+Executing java script:
+=======================
+If we need to highlight some color around the element
+Page.locator(element).evaluate(“(element) => {element.style.border = ‘3px solid green’;}”)
+
+Taking Screenshot:
+==================
+page.locator(element).screenshot(path=“hello.png”) # it takes element screenshot
+Page.screenshot() # it takes full page screenshot
+
+Handling Basic Auth:
+====================
+We need to import Browser from playwight.sync_api
+def test_javascript(browser: Browser)
+	context = browser.new_context(
+		http_credentials={‘username’: ‘admin’, ‘password’:’admin’}
+	)
+	page = context.new_page()
+	page.goto(url)
+
+Upload file:
+============
+Find the locator of the upload element
+page.locator(element).set_input_files(“path of file to upload to website”)
+If we want to upload multiples files
+page.locator(element).set_input_files(“path1”, “path2”)
+
+Downloading files:
+==================
+
+With page.expect_download() as download_info:
+	page.locator(element).click()
+download = download_info.value
+
+Project_dir = os.path.join(os.path.dirname(os.getcwd()), "downloads”)
+os.makedirs(Project_dir, exists_ok=True)
+
+file_path = os.path.join(Project_dir, “selenium.jar”)
+download.save_as(file_path)
+print(f’File downloaded to: {file_path}’)
