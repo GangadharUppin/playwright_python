@@ -248,7 +248,7 @@ Upload file:
 Find the locator of the upload element
 page.locator(element).set_input_files(“path of file to upload to website”)
 If we want to upload multiples files
-page.locator(element).set_input_files(“path1”, “path2”)
+page.locator(element).([“path1”, “path2”])
 
 Downloading files:
 ==================
