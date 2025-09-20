@@ -1,0 +1,1 @@
+{"cookies": [{"name": "login", "value": "test%2Ftest", "domain": "testphp.vulnweb.com", "path": "/", "expires": -1, "httpOnly": false, "secure": false, "sameSite": "Lax"}], "origins": []}
