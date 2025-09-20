@@ -5,3 +5,4 @@ def test_frame(page):
     frame_page = page.frame_locator("//iframe[@name='popuppage']")
     frame_page.locator("text=Alert Box").nth(1).click()
     page.wait_for_timeout(6000)
+
