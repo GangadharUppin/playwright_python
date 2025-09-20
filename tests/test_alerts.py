@@ -21,7 +21,6 @@ def test_simple_alert(page):
             print("Prompt accepted with input")
 
     page.on("dialog", handle_dialog)
-
     page.goto("https://vinothqaacademy.com/alert-and-popup/")
     page.locator("//button[@name='alertbox']").click()
     page.wait_for_timeout(2000)

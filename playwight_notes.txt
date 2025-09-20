@@ -44,6 +44,7 @@ page.go_back()
 page.go_forward()
 page.reload()
 
+
 To get text on the element:
 ===========================
 page.locator().inner_text()

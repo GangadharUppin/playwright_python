@@ -11,4 +11,3 @@ def xtest_open_browser():
         # visit url
         page.goto("https://playwright.dev/python/")
         browser.close()
-    
