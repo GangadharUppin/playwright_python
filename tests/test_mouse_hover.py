@@ -1,5 +1,7 @@
 from playwright.sync_api import sync_playwright
+import pytest
 
+@pytest.mark.functional
 def test_mouse_hover(page):
     page.goto("https://testautomationpractice.blogspot.com/")
     page.locator("//button[text()='Point Me']").hover()

@@ -1,5 +1,7 @@
 from playwright.sync_api import sync_playwright
+import pytest
 
+@pytest.mark.functional
 def test_simple_alert(page):
 
     def handle_dialog(dialog):

@@ -12,10 +12,9 @@ def test_pop_up(page):
     popup.wait_for_timeout(6000)
     popup.close()
 
-def test_wait_for_popup(page):
+def test_wait_for_event(page):
     page.goto("https://webbrowsertools.com/popup-blocker/")
     page.locator("//*[@id='popup']/tbody[2]/tr[1]/td[1]/input").click()
     pop_up = page.wait_for_event("popup")
     pop_up.locator("//a[text()='More information...']").click()
     pop_up.wait_for_timeout(6000)
-    page.wait_for_timeout(6000)

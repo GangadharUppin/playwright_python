@@ -1,6 +1,20 @@
 To open code gen
 playwright codegen https://www.flipkart.com/
 
+The client sends commands to the Playwright driver.
+A lightweight driver process that translates Playwright API calls to browser-specific instructions
+Unlike Selenium, it does not use HTTP/JSON; it primarily uses:
+WebSocket for inter-process communication (IPC)
+Direct protocol bindings (like Chromium DevTools Protocol)
+
+selenium vs playwright
+Communication protocol: HTTP requests (stateless) vs WebSocket (persistent, full-duplex)
+Connection type: New TCP connection per request (or reused via HTTP keep-alive) vs Single persistent TCP/WebSocket connection
+Latency: Higher due to repeated HTTP request-response cycles vs Lower due to continuous open connection
+Event handling: Polling or separate requests vs Real-time push from browser to client
+Overhead: HTTP headers + JSON serialization vs Minimal framing, less overhead
+
+
 Finding Elements
 =================
 1. get_by_role()
