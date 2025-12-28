@@ -38,6 +38,6 @@ jobs:
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
-          git add pw-pod.yaml
+          git add pod_file/pw-pod.yaml
           git commit -m "Update image to ${{ github.sha }}"
           git push
