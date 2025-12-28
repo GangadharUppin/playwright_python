@@ -1,7 +1,7 @@
 import pytest
 from playwright.sync_api import sync_playwright
 
-@pytest.mark.sanity
+@pytest.mark.normal
 def test_open_browser():
     with sync_playwright() as playwright:
         # Launch browser
