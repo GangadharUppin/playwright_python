@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: playwright-test-pod
+spec:
+  restartPolicy: Never
+  containers:
+    - name: playwright
+      image: playwright-tests:latest
+      imagePullPolicy: IfNotPresent
