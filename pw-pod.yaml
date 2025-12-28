@@ -6,5 +6,5 @@ spec:
   restartPolicy: Never
   containers:
     - name: playwright
-      image: playwright-tests:latest
-      imagePullPolicy: IfNotPresent
+      image: gangadhar66/playwright-tests:PLACEHOLDER
+      imagePullPolicy: Always

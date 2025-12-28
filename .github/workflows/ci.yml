@@ -26,3 +26,14 @@ jobs:
       - name: Push Docker image
         run: |
           docker push gangadhar66/playwright-tests:${{ github.sha }}
+      - name: Update image tag in pod yaml
+        run: |
+          sed -i "s|image: gangadhar66/playwright-tests:.*|image: gangadhar66/playwright-tests:${{ github.sha }}|" pw-pod.yaml
+
+      - name: Commit and push pod yaml
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add pw-pod.yaml
+          git commit -m "Update image to ${{ github.sha }}"
+          git push
