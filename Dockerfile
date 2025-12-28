@@ -24,4 +24,4 @@ COPY . .
 RUN chromium-browser --version || true
 
 # Run tests
-CMD ["pytest", "-vsm", "functional"]
+CMD ["pytest", "-vsm", "normal"]
