@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: playwright-tests
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/GangadharUppin/playwright_python.git
+    targetRevision: master
+    path: k8s
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
