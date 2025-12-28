@@ -13,5 +13,3 @@ def test_download_file_good(page):
         page.wait_for_timeout(2000)
     download = download_info.value
     download.save_as(r"C:\Users\ACER\Desktop\Learning\playwright_python\downloads\selenium.jar")
-
-
