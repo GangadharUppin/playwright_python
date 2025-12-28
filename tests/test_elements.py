@@ -5,7 +5,7 @@ import time
 
 class TestElements:
     @pytest.mark.sanity
-    def xtest_locate_element_with_link_text(self):
+    def test_locate_element_with_link_text(self):
         with sync_playwright() as playwright:
             browser = playwright.chromium.launch(headless=False, slow_mo=500)
             page = browser.new_page()
