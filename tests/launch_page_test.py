@@ -1,5 +1,7 @@
 import pytest
 from playwright.sync_api import sync_playwright
+from datetime import datetime
+
 
 @pytest.mark.normal
 def test_open_browser():
@@ -10,6 +12,8 @@ def test_open_browser():
         page = browser.new_page()
         # visit url
         page.goto("https://playwright.dev/python/")
+        print('current time is as')
+        print(datetime.now())
         browser.close()
 
 def test_storage_state_json():
