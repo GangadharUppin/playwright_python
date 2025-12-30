@@ -3,6 +3,7 @@ from playwright.sync_api import sync_playwright
 from datetime import datetime
 
 
+
 @pytest.mark.normal
 def test_open_browser():
     with sync_playwright() as playwright:
