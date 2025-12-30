@@ -10,3 +10,4 @@ def test_upload_file(page):
                                                                    , r"C:\Users\ACER\Desktop\Learning\playwright_python\tests\test_mouse_hover.py"])
     print('file is uploaded ....')
     page.wait_for_timeout(2000)
+
