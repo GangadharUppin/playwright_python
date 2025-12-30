@@ -17,6 +17,7 @@ def test_open_browser():
         print(datetime.now())
         browser.close()
 
+
 def test_storage_state_json():
     with sync_playwright() as playwright:
         # Launch browser
