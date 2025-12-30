@@ -25,4 +25,4 @@ def test_storage_state_json():
         page = context.new_page()
 
         page.goto("http://testphp.vulnweb.com/login.php")
-        page.wait_for_timeout(8000)
+        page.wait_for_timeout(5000)
