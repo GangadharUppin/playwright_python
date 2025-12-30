@@ -12,6 +12,7 @@ def test_open_browser():
         page = browser.new_page()
         # visit url
         page.goto("https://playwright.dev/python/")
+        print('current time is as')
         print(datetime.now())
 
         browser.close()
