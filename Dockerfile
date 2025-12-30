@@ -25,3 +25,6 @@ RUN chromium-browser --version || true
 
 # Run tests
 CMD ["pytest", "-vsm", "normal"]
+
+
+
