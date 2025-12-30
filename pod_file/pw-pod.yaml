@@ -6,5 +6,5 @@ spec:
   restartPolicy: Never
   containers:
     - name: playwright
-      image: gangadhar66/playwright-tests:9a80a6c3e6f0cb9b4ffaf39a7f5b77b001d7ecef
+      image: gangadhar66/playwright-tests:59d5887bd76cc63981d9efb6605ceb9ba9ed436c
       imagePullPolicy: Always
