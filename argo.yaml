@@ -7,7 +7,7 @@ spec:
   source:
     repoURL: https://github.com/GangadharUppin/playwright_python.git
     targetRevision: master
-    path: k8s
+    path: pod_file
   destination:
     server: https://kubernetes.default.svc
     namespace: default
