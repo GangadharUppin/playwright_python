@@ -1,0 +1,19 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  # use generateName to ensure each run creates a uniquely named Job/Pod
+  generateName: playwright-tests-job-
+  annotations:
+    # Run this Job as an Argo CD Sync hook
+    argocd.argoproj.io/hook: Sync
+    # Remove the Job after it finishes (success or failure)
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded,HookFailed
+spec:
+  backoffLimit: 0
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: playwright
+          image: gangadhar66/playwright-tests:21d97831ebe42c804c59f44662d595220be6b964
+          imagePullPolicy: Always
