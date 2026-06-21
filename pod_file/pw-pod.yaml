@@ -1,7 +1,12 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: playwright-test-pod
+  generateName: playwright-test-pod-
+  annotations:
+    # Run this Pod as an Argo CD Sync hook
+    argocd.argoproj.io/hook: Sync
+    # Remove the Pod after it finishes (success or failure)
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded,HookFailed
 spec:
   restartPolicy: Never
   containers:
